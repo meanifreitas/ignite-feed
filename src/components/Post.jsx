@@ -15,6 +15,8 @@ export function Post({ author, content, publishedAt }) {
     addSuffix: true
   });
 
+  const isNewCommentEmpty = newComment.length === 0;
+
   function handleNewComment(event) {
     event.preventDefault();
     setComments([...comments, newComment]);
@@ -63,9 +65,10 @@ export function Post({ author, content, publishedAt }) {
           placeholder='Leave a comment'
           onChange={handleNewCommentChange}
           value={newComment}
+          required
         />
         <footer>
-          <button type='submit'>Publish</button>
+          <button type='submit' disabled={isNewCommentEmpty}>Publish</button>
         </footer>
       </form>
 
